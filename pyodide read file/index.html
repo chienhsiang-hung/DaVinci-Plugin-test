@@ -9,9 +9,13 @@
     <script type="text/javascript">
       async function main(){
         let pyodide = await loadPyodide();
+        await pyodide.loadPackage('pandas');
         console.log(pyodide.runPython(`
-            import sys
+            import pandas as pd
+            print(pd.__version__)
+            import sys, os
             sys.version
+            print(os.getcwd())
         `));
         pyodide.runPython("print(1 + 2)");
       }
